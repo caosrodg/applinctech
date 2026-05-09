@@ -1,47 +1,15 @@
-<?php
-// --- about_us.php ---
-// This page requires the footer.php to be included after the content
-// Make sure to include any necessary session/connection files first
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Applinc-Tech | Rodgers Nyirenda C.</title>
+    <title>Applinc-Tech | Innovative Technology Solutions | Rodgers Nyirenda C.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Variables */
-        :root {
-            --primary-color: #2c7da0;
-            --secondary-color: #e94560;
-            --accent-color: #61a5c2;
-            --bg-body: #f8f9fa;
-            --bg-card: #ffffff;
-            --text-primary: #2c3e50;
-            --text-secondary: #6c757d;
-            --border-color: #e9ecef;
-            --shadow-sm: 0 4px 6px rgba(0,0,0,0.07);
-            --shadow-md: 0 10px 25px rgba(0,0,0,0.1);
-            --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
-            --primary-rgb: 44, 125, 160;
-            --police-color: #1a5276;
-            --police-rgb: 26, 82, 118;
-            --teacher-color: #2ecc71;
-            --teacher-rgb: 46, 204, 113;
-            --staff-color: #f39c12;
-            --staff-rgb: 243, 156, 18;
-        }
-        
-        body.dark-mode {
-            --bg-body: #1a1a2e;
-            --bg-card: #16213e;
-            --text-primary: #e2e8f0;
-            --text-secondary: #a0aec0;
-            --border-color: #2d3748;
-        }
-        
+        /* ----------------------------------------------
+            BASE & VARIABLES (CORPORATE FIRST)
+        ------------------------------------------------ */
         * {
             margin: 0;
             padding: 0;
@@ -49,427 +17,327 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-body);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
         }
         
-        /* About Page Container */
-        .about-container {
-            max-width: 1300px;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #c62828;
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #c62828;
+        }
+        
+        .logo span {
+            color: #222;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #c62828;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
         
         /* Hero Section */
-        .about-hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 50px;
-            text-align: center;
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: heroMove 20s linear infinite;
-        }
-        
-        @keyframes heroMove {
-            from { transform: translate(0, 0); }
-            to { transform: translate(50px, 50px); }
-        }
-        
-        .hero-logo {
-            width: 500px;
-            height: 100px;
-            margin: 0 auto 20px;
-            background: white;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 10px;
-        }
-        
-        .about-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .about-hero p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Profile Section */
-        .profile-section {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 40px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        
-        .company-logo-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-        }
-        
-        .company-logo-badge img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 8px;
-        }
-        
-        .profile-image {
+            padding: 160px 0 100px;
             text-align: center;
         }
         
-        .profile-image .avatar {
-            width: 250px;
-            height: 250px;
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .hero-btns .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .hero-btns .btn-secondary:hover {
+            background: white;
+            color: #c62828;
+        }
+        
+        /* Company Banner */
+        .company-banner {
+            background: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .company-logo-large {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .company-logo-large img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* About Section with Profile - NO extra image */
+        .about {
+            background: #fef5f5;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #222;
+            text-align: center;
+        }
+        
+        .about-text > p {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
+            background: linear-gradient(135deg, #2c7da0, #e94560);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: var(--shadow-lg);
             overflow: hidden;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            flex-shrink: 0;
         }
         
-        .profile-image .avatar img {
+        .profile-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
-        .profile-image .avatar i {
-            font-size: 120px;
-            color: white;
-        }
-        
-        .profile-image h2 {
-            margin-top: 20px;
-            font-size: 1.8rem;
-        }
-        
-        .profile-image .title {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin: 10px 0;
-        }
-        
         .profile-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #222;
         }
         
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .profile-title {
+            color: #c62828;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .info-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .info-badge {
+            background: #f0f0f0;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .info-badge i {
+            color: #c62828;
+            margin-right: 8px;
+        }
+        
+        .profile-bio {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .profile-bio p {
+            line-height: 1.7;
+            color: #444;
+        }
+        
+        .contact-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-top: 20px;
         }
         
-        .info-card {
-            background: rgba(var(--primary-rgb), 0.05);
-            padding: 15px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+        .contact-badge {
+            background: #f8f8f8;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
         }
         
-        .info-card:hover {
-            transform: translateY(-5px);
-            background: rgba(var(--primary-rgb), 0.1);
-        }
-        
-        .info-card i {
-            font-size: 24px;
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
-        
-        .info-card a {
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-        
-        .info-card a:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Systems Section */
-        .systems-section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-        }
-        
-        /* Featured Systems Grid - Police, Teacher, Staff */
-        .featured-systems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        /* Police System Card */
-        .police-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 3px solid #1a5276;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .police-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #1a5276, #2980b9);
-        }
-        
-        .police-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* Teacher System Card */
-        .teacher-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 3px solid #2ecc71;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .teacher-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #2ecc71, #27ae60);
-        }
-        
-        .teacher-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* Staff System Card */
-        .staff-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 3px solid #f39c12;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .staff-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #f39c12, #e67e22);
-        }
-        
-        .staff-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* ENLARGED LOGOS - Double size */
-        .featured-logo {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 20px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .featured-logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .featured-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 15px;
-        }
-        
-        .featured-icon {
-            width: 140px;
-            height: 140px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-        }
-        
-        .featured-icon i {
-            font-size: 64px;
-            color: white;
-        }
-        
-        .police-card h3, .teacher-card h3, .staff-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .police-card h3 { color: #1a5276; }
-        .teacher-card h3 { color: #2ecc71; }
-        .staff-card h3 { color: #f39c12; }
-        
-        .system-subtitle {
-            font-size: 0.85rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .system-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .system-features {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 15px;
-        }
-        
-        .system-features li {
-            padding: 5px 0;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
-        .system-features li i {
-            color: var(--primary-color);
+        .contact-badge i {
+            color: #c62828;
             margin-right: 8px;
-            font-size: 12px;
         }
         
-        /* Regular Systems Grid */
+        /* Systems Showcase - NO thick left borders */
+        .systems-showcase {
+            background: white;
+        }
+        
         .systems-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
         
         .system-card {
-            background: var(--bg-card);
+            background: #f9f9f9;
             border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .system-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
         .system-logo {
             width: 80px;
             height: 80px;
             margin-bottom: 20px;
+            background: white;
             border-radius: 12px;
-            overflow: hidden;
-            background: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         
         .system-logo img {
@@ -478,233 +346,123 @@
             object-fit: contain;
         }
         
-        .system-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .system-icon i {
-            font-size: 32px;
-            color: white;
-        }
-        
         .system-card h3 {
-            font-size: 1.5rem;
+            font-size: 22px;
             margin-bottom: 10px;
-            color: var(--primary-color);
         }
         
-        /* School Systems Grid - Special for schools */
-        .school-systems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-        
-        .school-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-        
-        .school-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .school-logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--primary-color);
-        }
-        
-        .school-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .school-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .school-card p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        .school-badge {
+        .system-tag {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: #c62828;
             color: white;
-            padding: 3px 10px;
+            font-size: 12px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.7rem;
-            margin-top: 10px;
-        }
-        
-        /* Achievements Grid */
-        .achievements-section {
-            margin-bottom: 40px;
-        }
-        
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        
-        .achievement-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-        
-        .achievement-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .achievement-icon {
-            font-size: 48px;
-            color: var(--primary-color);
             margin-bottom: 15px;
         }
         
-        .achievement-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+        .system-features {
+            margin-top: 15px;
         }
         
-        .achievement-card .year {
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        .system-features li {
+            padding: 5px 0;
+            font-size: 14px;
         }
         
-        .achievement-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        .system-features li i {
+            color: #c62828;
+            margin-right: 8px;
         }
         
-        /* Logo Creator Badge */
-        .logo-creator-badge {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 40px;
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #222 0%, #444 100%);
             color: white;
-        }
-        
-        .logo-creator-badge i {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        
-        .logo-creator-badge h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        
-        /* Roles Section */
-        .roles-section {
-            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(233, 69, 96, 0.1));
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
             text-align: center;
         }
         
-        .roles-grid {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-item i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #c62828;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        /* Schools Grid */
+        .schools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
         
-        .role-card {
-            background: var(--bg-card);
+        .school-card {
+            background: #f9f9f9;
+            border-radius: 12px;
             padding: 25px;
-            border-radius: 16px;
-            transition: all 0.3s ease;
+            text-align: center;
+            transition: transform 0.3s;
         }
         
-        .role-card i {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        .school-card:hover {
+            transform: translateY(-5px);
         }
         
-        .role-card h4 {
-            font-size: 1.2rem;
+        .school-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .school-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .school-card h4 {
+            font-size: 18px;
             margin-bottom: 10px;
+            color: #c62828;
         }
         
-        /* Thank You Section */
-        .thankyou-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 20px;
-            padding: 50px 40px;
-            text-align: center;
+        .school-badge {
+            display: inline-block;
+            background: #c62828;
             color: white;
-            margin-bottom: 40px;
-        }
-        
-        .thankyou-section h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        
-        .thankyou-section .deepseek-logo {
-            font-size: 2.5rem;
-            margin: 20px 0;
-        }
-        
-        .thankyou-section p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-        
-        /* Partnership Logos - ENLARGED NYCOM SECTION */
-        .partners-section {
-            background: var(--bg-card);
+            padding: 4px 12px;
             border-radius: 20px;
-            padding: 50px 40px;
-            margin-bottom: 40px;
-            text-align: center;
-            border: 2px solid var(--primary-color);
-            box-shadow: var(--shadow-md);
+            font-size: 12px;
+            margin-top: 12px;
         }
         
-        .partners-section h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--primary-color);
+        /* Partnership Section */
+        .partners-section {
+            background: white;
+            padding: 60px 0;
+            text-align: center;
         }
         
         .partner-logos {
@@ -712,27 +470,23 @@
             justify-content: center;
             gap: 40px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin: 30px 0;
         }
         
         .partner-logo {
             width: 180px;
             height: 180px;
-            border-radius: 20px;
-            overflow: hidden;
             background: #f0f0f0;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            box-shadow: var(--shadow-sm);
+            padding: 20px;
+            transition: transform 0.3s;
         }
         
         .partner-logo:hover {
             transform: scale(1.05);
-            box-shadow: var(--shadow-lg);
         }
         
         .partner-logo img {
@@ -741,489 +495,514 @@
             object-fit: contain;
         }
         
-        .partners-section p {
-            margin-top: 30px;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        .partners-section .highlight {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        /* M-HUB Powered Badge */
         .mhub-badge {
             display: inline-block;
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: bold;
+            padding: 10px 25px;
+            border-radius: 40px;
             margin-top: 20px;
-            animation: pulse 2s infinite;
+            font-weight: 600;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        
+        .achievement-card {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .achievement-icon {
+            font-size: 40px;
+            color: #c62828;
+            margin-bottom: 15px;
+        }
+        
+        /* Logo Creator Badge */
+        .logo-creator-badge {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            margin: 40px 0;
+        }
+        
+        .logo-creator-badge i {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        
+        /* Thank You */
+        .thankyou-section {
+            background: linear-gradient(135deg, #c62828, #e94560);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            color: white;
+            margin: 40px 0;
+        }
+        
+        /* Roles Section */
+        .roles-section {
+            background: linear-gradient(135deg, rgba(198,40,40,0.1), rgba(233,69,96,0.1));
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .roles-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .role-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            min-width: 250px;
+        }
+        
+        .role-card i {
+            font-size: 40px;
+            color: #c62828;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #c62828;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bbb;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #c62828;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #c62828;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 14px;
         }
         
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .profile-section {
-                grid-template-columns: 1fr;
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .profile-header {
+                flex-direction: column;
                 text-align: center;
-                padding: 25px;
             }
-            
-            .company-logo-badge {
-                position: static;
-                margin: 0 auto 20px;
+            .profile-info {
+                text-align: center;
             }
-            
-            .about-hero {
-                padding: 40px 20px;
+            .info-badges {
+                justify-content: center;
             }
-            
-            .about-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-systems-grid,
-            .systems-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .school-systems-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-logo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .partner-logo {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .partners-section h3 {
-                font-size: 1.5rem;
+            .contact-badges {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Include your sidebar/navigation here if needed -->
-    
-    <div class="about-container">
-        <!-- Hero Section -->
-        <div class="about-hero">
-            <div class="hero-logo">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Applinc<span>-Tech</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#systems">Systems</a></li>
+                    <li><a href="#schools">Schools</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Innovative Technology Solutions for Malawi</h1>
+            <p>We provide cutting-edge software development, school management systems, and digital transformation services to help your organization thrive.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn">Get Started</a>
+                <a href="#systems" class="btn btn-secondary">Our Systems</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Logo Banner -->
+    <div class="company-banner">
+        <div class="container">
+            <div class="company-logo-large">
                 <img src="about/applinc.png" alt="Applinc-Tech Logo" onerror="this.style.display='none'">
             </div>
-            <h1><i class="fas fa-code"></i> About Applinc-Tech</h1>
-            <p>Innovative Technology Solutions for Education, Agriculture, Security, and Sports Management</p>
         </div>
-        
-        <!-- Profile Section -->
-        <div class="profile-section">
-            <div class="company-logo-badge">
-                <img src="about/applinc.png" alt="Applinc-Tech" onerror="this.style.display='none'">
-            </div>
-            <div class="profile-image">
-                <div class="avatar">
-                    <img src="about/rod.jpg" alt="Rodgers Nyirenda C." onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%232c7da0\'/%3E%3Ctext x=\'50\' y=\'67\' text-anchor=\'middle\' fill=\'white\' font-size=\'40\'%3ERN%3C/text%3E%3C/svg%3E'">
-                </div>
-                <h2>Rodgers Nyirenda C.</h2>
-                <div class="title">Founder & CEO | Applinc-Tech</div>
-                <div class="social-icons" style="margin-top: 15px;">
-                    <a href="https://www.facebook.com/caosfactor" class="social-icon" style="display: inline-block; width: 35px; height: 35px; line-height: 35px; background: var(--primary-color); color: white; border-radius: 50%; margin: 0 5px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/caosrodg" class="social-icon" style="display: inline-block; width: 35px; height: 35px; line-height: 35px; background: var(--primary-color); color: white; border-radius: 50%; margin: 0 5px;"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com/caosrodg" class="social-icon" style="display: inline-block; width: 35px; height: 35px; line-height: 35px; background: var(--primary-color); color: white; border-radius: 50%; margin: 0 5px;"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="profile-info">
-                <h3><i class="fas fa-user-tie"></i> Who Am I?</h3>
-                <p>I am Rodgers Nyirenda C., a passionate technologist, educator, innovator, and logo creator dedicated to transforming Malawi's digital landscape. As the Founder and CEO of Applinc-Tech, I lead a team focused on developing cutting-edge software solutions that address real-world challenges in education, agriculture, security, sports management, and case management.</p>
-                
-                <div class="info-grid">
-                    <div class="info-card">
-                        <i class="fas fa-phone-alt"></i>
-                        <strong>Phone:</strong><br>
-                        <a href="tel:+265882403621">+265 882 403 621</a>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-envelope"></i>
-                        <strong>Email:</strong><br>
-                        <a href="mailto:applinc.tech.mw@gmail.com">applinc.tech.mw@gmail.com</a>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-university"></i>
-                        <strong>Bank Account:</strong><br>
-                        25080363 (NBS)
-                    </div>
-                    <div class="info-card">
-                        <i class="fab fa-facebook"></i>
-                        <strong>Facebook:</strong><br>
-                        <a href="https://facebook.com/caosfactor">@caosfactor</a>
+    </div>
+
+    <!-- About Section with Founder Profile - NO extra Applinc logo image -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Applinc-Tech</h2>
+                    <p>Founded by Rodgers Nyirenda C., Applinc-Tech has been at the forefront of technological innovation, helping businesses and educational institutions navigate the digital landscape across Malawi.</p>
+                    
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img src="about/rod.jpg" alt="Rodgers Nyirenda C." onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23c62828\'/%3E%3Ctext x=\'50\' y=\'67\' text-anchor=\'middle\' fill=\'white\' font-size=\'40\'%3ERN%3C/text%3E%3C/svg%3E'">
+                            </div>
+                            <div class="profile-info">
+                                <h3>Rodgers Nyirenda C.</h3>
+                                <div class="profile-title">Founder & CEO | Applinc-Tech</div>
+                                <div class="info-badges">
+                                    <span class="info-badge"><i class="fas fa-graduation-cap"></i> Master's in Instructional Technology</span>
+                                    <span class="info-badge"><i class="fas fa-laptop-code"></i> ICT Degree (Mzuni 2019)</span>
+                                    <span class="info-badge"><i class="fas fa-chalkboard"></i> Education Degree (2013)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-bio">
+                            <p>I am a passionate technologist, educator, innovator, and logo creator dedicated to transforming Malawi's digital landscape. I lead a team focused on developing cutting-edge software solutions that address real-world challenges in education, agriculture, security, sports management, and case management.</p>
+                        </div>
+                        <div class="contact-badges">
+                            <span class="contact-badge"><i class="fas fa-phone"></i> +265 882 403 621</span>
+                            <span class="contact-badge"><i class="fas fa-envelope"></i> applinc.tech.mw@gmail.com</span>
+                            <span class="contact-badge"><i class="fab fa-facebook"></i> @caosfactor</span>
+                            <span class="contact-badge"><i class="fas fa-university"></i> NBS: 25080363</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Logo Creator Badge -->
+    </section>
+
+    <!-- Logo Creator Badge -->
+    <div class="container">
         <div class="logo-creator-badge">
             <i class="fas fa-palette"></i>
             <h3>Professional Logo Creator</h3>
             <p>I design unique, memorable logos that capture brand identity and vision</p>
         </div>
-        
-        <!-- Featured Systems Section - Police, Teacher Management, Staff Management -->
-        <div class="systems-section">
-            <h2 class="section-title"><i class="fas fa-star-of-life"></i> Flagship Enterprise Systems</h2>
-            <div class="featured-systems-grid">
-                
-                <!-- Police Criminal Management System -->
-                <div class="police-card">
-                    <div class="featured-logo">
-                        <img src="about/psm.png" alt="Police System Logo" onerror="this.style.display='none'">
-                    </div>
-                    <h3><i class="fas fa-shield-alt"></i> Police Criminal Management System</h3>
-                    <div class="system-subtitle">Law Enforcement & Criminal Records Management</div>
-                    <p>A comprehensive criminal management system for law enforcement agencies to track criminals, manage case files, and streamline police operations.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Criminal database and offender profiling</li>
-                        <li><i class="fas fa-check-circle"></i> Case management and investigation tracking</li>
-                        <li><i class="fas fa-check-circle"></i> Incident reporting and analytics dashboard</li>
-                        <li><i class="fas fa-check-circle"></i> Digital evidence management system</li>
-                    </ul>
-                </div>
-                
-                <!-- Teacher Management System - TSD -->
-                <div class="teacher-card">
-                    <div class="featured-logo">
-                        <img src="about/tsd.png" alt="Teacher Management System Logo" onerror="this.style.display='none'">
-                    </div>
-                    <h3><i class="fas fa-chalkboard-user"></i> Teacher Management System</h3>
-                    <div class="system-subtitle">Educator Performance & Career Tracking</div>
-                    <p>A professional platform for managing teacher performance, professional development, and career progression across educational institutions.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Teacher performance evaluation and feedback</li>
-                        <li><i class="fas fa-check-circle"></i> Professional development tracking</li>
-                        <li><i class="fas fa-check-circle"></i> Lesson planning and classroom observation</li>
-                        <li><i class="fas fa-check-circle"></i> Certification and qualification management</li>
-                    </ul>
-                </div>
-                
-                <!-- Staff Management System - DSMS -->
-                <div class="staff-card">
-                    <div class="featured-logo">
-                        <img src="about/dsms.png" alt="Staff Management System Logo" onerror="this.style.display='none'">
-                    </div>
-                    <h3><i class="fas fa-users"></i> Staff Management System (DSMS)</h3>
-                    <div class="system-subtitle">District-Wide Staff & Transfer Management</div>
-                    <p>A powerful staff management system for organizing teachers across schools and districts, tracking transfers, and maintaining comprehensive staff records.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> District-wide teacher census and tracking</li>
-                        <li><i class="fas fa-check-circle"></i> Staff transfer and deployment management</li>
-                        <li><i class="fas fa-check-circle"></i> School-level staff allocation reporting</li>
-                        <li><i class="fas fa-check-circle"></i> Teacher-to-school ratio analytics</li>
-                    </ul>
-                </div>
+    </div>
+
+    <!-- Systems Showcase - NO thick left borders -->
+    <section id="systems" class="systems-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Enterprise Systems</h2>
+                <p>Innovative solutions built for real-world impact</p>
             </div>
-        </div>
-        
-        <!-- Other Systems Developed -->
-        <div class="systems-section">
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Other Systems Developed</h2>
             <div class="systems-grid">
-                
-                <!-- SIMS - School Management System -->
                 <div class="system-card">
-                    <div class="system-logo">
-                        <img src="about/sims.png" alt="SIMS Logo" onerror="this.style.display='none'">
-                    </div>
-                    <h3>SIMS</h3>
-                    <div class="system-subtitle">School Management System</div>
-                    <p>A comprehensive school management platform that handles events, academic activities, result portals, timetable creation, and all data-related activities for educational institutions.</p>
+                    <div class="system-logo"><img src="about/psm.png" alt="Police System" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Law Enforcement</span>
+                    <h3>Police Criminal Management System</h3>
+                    <p>Criminal database, case tracking, incident reporting, and digital evidence management.</p>
                     <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Events calendar and academic activity tracking</li>
-                        <li><i class="fas fa-check-circle"></i> Student & parent result portals</li>
-                        <li><i class="fas fa-check-circle"></i> Timetable generation and management</li>
-                        <li><i class="fas fa-check-circle"></i> Complete administrative dashboard</li>
+                        <li><i class="fas fa-check"></i> Offender profiling & investigation tracking</li>
+                        <li><i class="fas fa-check"></i> Analytics dashboard for law enforcement</li>
                     </ul>
                 </div>
-                
-                <!-- Rumphi District Results System -->
                 <div class="system-card">
-                    <div class="system-logo">
-                        <img src="about/rumphi district logo.png" alt="Rumphi District Logo" onerror="this.style.display='none'">
-                    </div>
+                    <div class="system-logo"><img src="about/tsd.png" alt="Teacher System" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Education</span>
+                    <h3>Teacher Management System</h3>
+                    <p>Performance evaluation, professional development, certification tracking.</p>
+                    <ul class="system-features">
+                        <li><i class="fas fa-check"></i> Lesson planning & classroom observation</li>
+                        <li><i class="fas fa-check"></i> Career progression analytics</li>
+                    </ul>
+                </div>
+                <div class="system-card">
+                    <div class="system-logo"><img src="about/dsms.png" alt="Staff Management" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">District Administration</span>
+                    <h3>Staff Management System (DSMS)</h3>
+                    <p>District-wide teacher census, transfer management, school-level allocation.</p>
+                    <ul class="system-features">
+                        <li><i class="fas fa-check"></i> Teacher-to-school ratio analytics</li>
+                        <li><i class="fas fa-check"></i> Deployment & reporting tools</li>
+                    </ul>
+                </div>
+                <div class="system-card">
+                    <div class="system-logo"><img src="about/sims.png" alt="SIMS" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Education</span>
+                    <h3>SIMS - School Management</h3>
+                    <p>Events calendar, result portals, timetable generation, complete admin dashboard.</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-logo"><img src="about/rumphi district logo.png" alt="Rumphi Results" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Analytics</span>
                     <h3>Rumphi District Results System</h3>
-                    <div class="system-subtitle">District-Wide Exam Management</div>
-                    <p>A powerful system that manages examination results for the entire Rumphi district, ranking students and generating detailed graphs for independent schools to benefit from in-depth analysis.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> District-wide result aggregation</li>
-                        <li><i class="fas fa-check-circle"></i> Student ranking and performance graphs</li>
-                        <li><i class="fas fa-check-circle"></i> Cross-school comparative analysis</li>
-                        <li><i class="fas fa-check-circle"></i> Detailed exam reports and insights</li>
-                    </ul>
+                    <p>District-wide exam aggregation, student ranking, cross-school comparative graphs.</p>
                 </div>
-                
-                <!-- MASSA System -->
                 <div class="system-card">
-                    <div class="system-logo">
-                        <img src="about/HDsamson.png" alt="MASSA Logo" onerror="this.style.display='none'">
-                    </div>
-                    <h3>MASSA</h3>
-                    <div class="system-subtitle">Malawi Schools Sports Association</div>
-                    <p>A dedicated platform for Malawi Schools Association to register and track youth athletes participating in National Games, manage selections, and monitor athletic progress.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Athlete registration and profiling</li>
-                        <li><i class="fas fa-check-circle"></i> National Games participation tracking</li>
-                        <li><i class="fas fa-check-circle"></i> Talent identification and selection</li>
-                        <li><i class="fas fa-check-circle"></i> Performance monitoring dashboard</li>
-                    </ul>
+                    <div class="system-logo"><img src="about/HDsamson.png" alt="MASSA" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Sports</span>
+                    <h3>MASSA - Malawi Schools Sports</h3>
+                    <p>Athlete registration, National Games tracking, talent identification, performance monitoring.</p>
                 </div>
-                
-                <!-- Njerenjere Investment System -->
                 <div class="system-card">
-                    <div class="system-logo">
-                        <img src="about/NJERENJERE.png" alt="Njerenjere Logo" onerror="this.style.display='none'">
-                    </div>
+                    <div class="system-logo"><img src="about/NJERENJERE.png" alt="Njerenjere" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Business</span>
                     <h3>Njerenjere Investment</h3>
-                    <div class="system-subtitle">Filling Station & Infrastructure Management</div>
-                    <p>An integrated business management system for Njerenjere Investment handling filling station operations, transportation logistics, and infrastructure development tracking.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Fuel inventory and sales management</li>
-                        <li><i class="fas fa-check-circle"></i> Fleet and transportation tracking</li>
-                        <li><i class="fas fa-check-circle"></i> Infrastructure project monitoring</li>
-                        <li><i class="fas fa-check-circle"></i> Financial reporting and analytics</li>
-                    </ul>
+                    <p>Fuel inventory management, fleet tracking, infrastructure project monitoring.</p>
                 </div>
-                
-                <!-- Info-Ma System -->
                 <div class="system-card">
-                    <div class="system-logo">
-                        <img src="about/infomareal23.png" alt="Info-Ma Logo" onerror="this.style.display='none'">
-                    </div>
+                    <div class="system-logo"><img src="about/infomareal23.png" alt="Info-Ma" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Agriculture</span>
                     <h3>Info-Ma</h3>
-                    <div class="system-subtitle">Information for Malawian Agriculture</div>
-                    <p>An agricultural information system providing farmers with real-time weather updates, market prices, and best farming practices.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Real-time weather forecasting and alerts</li>
-                        <li><i class="fas fa-check-circle"></i> Market price tracking across Malawi</li>
-                        <li><i class="fas fa-check-circle"></i> Crop management tips and pest control advisory</li>
-                    </ul>
+                    <p>Real-time weather alerts, market price tracking across Malawi, crop management tips.</p>
                 </div>
-                
-                <!-- True-Track Game -->
                 <div class="system-card">
-                    <div class="system-logo">
-                        <img src="about/trutrek.jpg" alt="True-Track Logo" onerror="this.style.display='none'">
-                    </div>
+                    <div class="system-logo"><img src="about/trutrek.jpg" alt="True-Track" onerror="this.style.display='none'"></div>
+                    <span class="system-tag">Education</span>
                     <h3>True-Track</h3>
-                    <div class="system-subtitle">A Game For Children</div>
-                    <p>An educational game designed to help children develop critical thinking and problem-solving skills through interactive challenges.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Age-appropriate learning modules</li>
-                        <li><i class="fas fa-check-circle"></i> Progress tracking and reward system</li>
-                        <li><i class="fas fa-check-circle"></i> Offline functionality for rural areas</li>
-                    </ul>
-                </div>
-                
-                <!-- CLAM System -->
-                <div class="system-card">
-                    <div class="system-icon">
-                        <i class="fas fa-gavel"></i>
-                    </div>
-                    <h3>CLAM</h3>
-                    <div class="system-subtitle">Cram Associate Case Management System</div>
-                    <p>A comprehensive case management solution designed for legal and associate professionals to track, manage, and resolve cases efficiently.</p>
-                    <ul class="system-features">
-                        <li><i class="fas fa-check-circle"></i> Case tracking with real-time status updates</li>
-                        <li><i class="fas fa-check-circle"></i> Document management and secure storage</li>
-                        <li><i class="fas fa-check-circle"></i> Client communication portal and deadline reminders</li>
-                    </ul>
+                    <p>Educational game helping children develop critical thinking and problem-solving skills.</p>
                 </div>
             </div>
         </div>
-        
-        <!-- School Management Systems Section -->
-        <div class="systems-section">
-            <h2 class="section-title"><i class="fas fa-school"></i> School Management Systems Deployed</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">Custom School Management Systems for Secondary Schools in Malawi</p>
-            <div class="school-systems-grid">
-                
-                <div class="school-card">
-                    <div class="school-logo">
-                        <img src="about/luviri.jpg" alt="Luviri Secondary School" onerror="this.style.display='none'">
-                    </div>
-                    <h4>Luviri Secondary School</h4>
-                    <p>Complete school management system with student records, exam management, and result processing</p>
-                    <span class="school-badge"><i class="fas fa-check-circle"></i> Active</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-logo">
-                        <img src="about/nyungwe.jpg" alt="Wenya Secondary School" onerror="this.style.display='none'">
-                    </div>
-                    <h4>Wenya Secondary School</h4>
-                    <p>Digital platform for attendance tracking, grade management, and parent communication</p>
-                    <span class="school-badge"><i class="fas fa-check-circle"></i> Active</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-logo">
-                        <img src="about/jalawe.jpg" alt="Jalawe Secondary School" onerror="this.style.display='none'">
-                    </div>
-                    <h4>Jalawe Secondary School</h4>
-                    <p>Comprehensive SMS featuring exam analysis, student performance dashboards, and report generation</p>
-                    <span class="school-badge"><i class="fas fa-check-circle"></i> Active</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-logo">
-                        <img src="about/rusescho.jpg" alt="Rumphi Secondary School" onerror="this.style.display='none'">
-                    </div>
-                    <h4>Rumphi Secondary School</h4>
-                    <p>Full-featured management system with timetable creation, fee tracking, and result portals</p>
-                    <span class="school-badge"><i class="fas fa-check-circle"></i> Active</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-logo">
-                        <img src="about/endindeni.jpg" alt="Endindeni CDSS" onerror="this.style.display='none'">
-                    </div>
-                    <h4>Endindeni CDSS</h4>
-                    <p>Tailored solution for Community Day Secondary School with focus on student tracking and academic progress</p>
-                    <span class="school-badge"><i class="fas fa-check-circle"></i> Active</span>
-                </div>
-                
-                <div class="school-card">
-                    <div class="school-logo">
-                        <img src="about/bwengu.jpg" alt="Bwengu CDSS" onerror="this.style.display='none'">
-                    </div>
-                    <h4>Bwengu CDSS</h4>
-                    <p>Comprehensive management system for student records, exam tracking, and academic performance monitoring</p>
-                    <span class="school-badge"><i class="fas fa-check-circle"></i> Active</span>
-                </div>
+    </section>
+
+    <!-- Schools Deployed Section -->
+    <section id="schools" style="background: #fef5f5; padding: 80px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>School Management Systems Deployed</h2>
+                <p>Active implementations across secondary schools in Malawi</p>
+            </div>
+            <div class="schools-grid">
+                <div class="school-card"><div class="school-logo"><img src="about/luviri.jpg" alt="Luviri" onerror="this.style.display='none'"></div><h4>Luviri Secondary School</h4><p>Student records, exam management</p><span class="school-badge">Active</span></div>
+                <div class="school-card"><div class="school-logo"><img src="about/nyungwe.jpg" alt="Wenya" onerror="this.style.display='none'"></div><h4>Wenya Secondary School</h4><p>Attendance & grade management</p><span class="school-badge">Active</span></div>
+                <div class="school-card"><div class="school-logo"><img src="about/jalawe.jpg" alt="Jalawe" onerror="this.style.display='none'"></div><h4>Jalawe Secondary School</h4><p>Exam analysis & dashboards</p><span class="school-badge">Active</span></div>
+                <div class="school-card"><div class="school-logo"><img src="about/rusescho.jpg" alt="Rumphi" onerror="this.style.display='none'"></div><h4>Rumphi Secondary School</h4><p>Timetable & fee tracking</p><span class="school-badge">Active</span></div>
+                <div class="school-card"><div class="school-logo"><img src="about/endindeni.jpg" alt="Endindeni" onerror="this.style.display='none'"></div><h4>Endindeni CDSS</h4><p>Student progress tracking</p><span class="school-badge">Active</span></div>
+                <div class="school-card"><div class="school-logo"><img src="about/bwengu.jpg" alt="Bwengu" onerror="this.style.display='none'"></div><h4>Bwengu CDSS</h4><p>Exam & performance monitoring</p><span class="school-badge">Active</span></div>
             </div>
         </div>
-        
-        <!-- Partnership & Collaboration Section - ENLARGED -->
-        <div class="partners-section">
-            <h3><i class="fas fa-handshake"></i> Notable Collaborations</h3>
-            <div class="partner-logos">
-                <div class="partner-logo">
-                    <img src="about/RODGERYNYCOM2.jpg" alt="Nycom Collaboration" onerror="this.style.display='none'">
-                </div>
-                <div class="partner-logo">
-                    <img src="about/RODERNYCOMM.jpg" alt="Rodgers Nycom" onerror="this.style.display='none'">
-                </div>
-            </div>
-            <p>
-                <span class="highlight">Distinguished collaboration with Daud Suleman at Nycom</span><br>
-                Contributing to innovative technology solutions and digital transformation initiatives.
-            </p>
-            <div class="mhub-badge">
-                <i class="fas fa-bolt"></i> Powered by M-HUB Malawi
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><i class="fas fa-project-diagram"></i><div class="stat-number">20+</div><div class="stat-text">Systems Deployed</div></div>
+                <div class="stat-item"><i class="fas fa-school"></i><div class="stat-number">15+</div><div class="stat-text">Schools Served</div></div>
+                <div class="stat-item"><i class="fas fa-trophy"></i><div class="stat-number">5</div><div class="stat-text">National Awards</div></div>
+                <div class="stat-item"><i class="fas fa-chalkboard-user"></i><div class="stat-number">500+</div><div class="stat-text">Teachers Managed</div></div>
             </div>
         </div>
-        
-        <!-- Achievements -->
-        <div class="achievements-section">
-            <h2 class="section-title"><i class="fas fa-trophy"></i> Achievements & Awards</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <div class="achievement-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h4>Master's in Instructional Technology</h4>
-                    <div class="year">2025 | Chancellor College</div>
-                    <p>Advanced degree focusing on integrating technology into educational curricula.</p>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h4>Degree in ICT</h4>
-                    <div class="year">2019 | Mzuni University</div>
-                    <p>Bachelor's degree in Information and Communication Technology.</p>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon"><i class="fas fa-chalkboard"></i></div>
-                    <h4>Degree in Education</h4>
-                    <div class="year">2013 | Mzuni University</div>
-                    <p>Bachelor's degree in Education, foundation in teaching methodologies.</p>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon"><i class="fas fa-medal"></i></div>
-                    <h4>M-HUB Malawi National Winner</h4>
-                    <div class="year">2024 | Nationwide Competition</div>
-                    <p>Winner of the M-HUB Malawi national competition for innovative tech solutions.</p>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon"><i class="fas fa-handshake"></i></div>
-                    <h4>Distinction with Daud Suleman</h4>
-                    <div class="year">2024 | Nycom</div>
-                    <p>Recognized for outstanding collaboration and project excellence.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Leadership Roles -->
+    </section>
+
+    <!-- Roles Section -->
+    <div class="container">
         <div class="roles-section">
             <h3><i class="fas fa-users"></i> Leadership & Training Roles</h3>
             <div class="roles-grid">
-                <div class="role-card">
-                    <i class="fas fa-user-tie"></i>
-                    <h4>President</h4>
-                    <p>ICT Specialist Teachers Association of Malawi-NORTH.</p>
-                    <small>Leading ICT education initiatives nationwide</small>
-                </div>
-                <div class="role-card">
-                    <i class="fas fa-chalkboard-user"></i>
-                    <h4>Trainer of Trainers</h4>
-                    <p>ICT Specialist Teacher Malawi- NORTH</p>
-                    <small>Training educators across Malawi in ICT integration</small>
-                </div>
+                <div class="role-card"><i class="fas fa-user-tie"></i><h4>President</h4><p>ICT Specialist Teachers Association of Malawi-NORTH</p></div>
+                <div class="role-card"><i class="fas fa-chalkboard-user"></i><h4>Trainer of Trainers</h4><p>ICT Specialist Teacher Malawi-NORTH</p></div>
             </div>
-        </div>
-        
-        <!-- Thank You Section -->
-        <div class="thankyou-section">
-            <div class="deepseek-logo">
-        <i class="fas fa-code"> / Applinc-Tech</i>
-            </div>
-            <p style="margin-top: 20px; font-size: 0.9rem;"><i class="fas fa-heart"></i> Powered by innovation, driven by passion</p>
         </div>
     </div>
-    
-    <!-- Include the footer -->
-    <?php include 'footer.php'; ?>
-    
+
+    <!-- Achievements -->
+    <section id="achievements">
+        <div class="container">
+            <div class="section-title">
+                <h2>Achievements & Recognition</h2>
+                <p>Milestones that define our journey</p>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card"><div class="achievement-icon"><i class="fas fa-medal"></i></div><h4>M-HUB Malawi National Winner</h4><p>2024 - Innovative tech solutions competition</p></div>
+                <div class="achievement-card"><div class="achievement-icon"><i class="fas fa-handshake"></i></div><h4>Distinction - Daud Suleman (Nycom)</h4><p>2024 - Outstanding collaboration excellence</p></div>
+                <div class="achievement-card"><div class="achievement-icon"><i class="fas fa-graduation-cap"></i></div><h4>Master's in Instructional Technology</h4><p>2025 - Chancellor College</p></div>
+                <div class="achievement-card"><div class="achievement-icon"><i class="fas fa-laptop-code"></i></div><h4>Degree in ICT</h4><p>2019 - Mzuni University</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <div class="partners-section">
+        <div class="container">
+            <h3><i class="fas fa-handshake"></i> Notable Collaborations</h3>
+            <div class="partner-logos">
+                <div class="partner-logo"><img src="about/RODGERYNYCOM2.jpg" alt="Nycom" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="about/RODERNYCOMM.jpg" alt="Rodgers Nycom" onerror="this.style.display='none'"></div>
+            </div>
+            <p><strong>Distinguished collaboration with Daud Suleman at Nycom</strong><br>Contributing to innovative technology solutions and digital transformation initiatives.</p>
+            <div class="mhub-badge"><i class="fas fa-bolt"></i> Powered by M-HUB Malawi</div>
+        </div>
+    </div>
+
+    <!-- Thank You Section -->
+    <div class="container">
+        <div class="thankyou-section">
+            <i class="fas fa-code fa-3x"></i>
+            <h2 style="margin-top: 20px;">Applinc-Tech</h2>
+            <p><i class="fas fa-heart"></i> Powered by innovation, driven by passion</p>
+            <p style="margin-top: 15px; font-size: 14px;">Rodgers Nyirenda C. - Founder & CEO</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Applinc-Tech</h3>
+                    <p>Innovative technology solutions for education, agriculture, security, and sports management.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/caosfactor"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/caosrodg"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/caosrodg"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul><li><a href="#">Home</a></li><li><a href="#about">About</a></li><li><a href="#systems">Systems</a></li><li><a href="#schools">Schools</a></li><li><a href="#achievements">Achievements</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> +265 882 403 621</li>
+                        <li><i class="fas fa-envelope"></i> applinc.tech.mw@gmail.com</li>
+                        <li><i class="fas fa-university"></i> NBS Account: 25080363</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Applinc-Tech | Rodgers Nyirenda C. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Dark mode support for about page
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navMenu = document.querySelector('nav ul');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('nav ul').style.display = 'none';
+                    }
+                }
+            });
         });
     </script>
 </body>
